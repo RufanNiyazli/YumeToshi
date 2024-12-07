@@ -1,0 +1,20 @@
+:root {
+  --main-color: #062654;
+  --navbar-color: #2265a2;
+  --card-color: #7fade0;
+  --text: #eaf0f7;
+  --button-color: #ffb17a;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  object-fit: cover;
+  text-decoration: none;
+  list-style: none;
+  
+}
+body {
+  background-color: var(--main-color);
+  font-family: Arial, Helvetica, sans-serif;
+}
