@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const initialState = {
   animes: [],
-  selectedAnime: []
+  selectedAnime: [],
+  loading: false
 };
 
 export const getAnime = createAsyncThunk("getAnime", async () => {
@@ -14,10 +15,16 @@ const AnimeListSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
+      .addCase(getAnime.pending, (state, action) => {
+        state.loading = true;
+      })
       .addCase(getAnime.fulfilled, (state, action) => {
+        state.loading=false
         state.animes = action.payload;
       })
+
       .addCase(getAnime.rejected, (state, action) => {
+        state.loading=false
         console.error(action.error.message);
       });
   },
