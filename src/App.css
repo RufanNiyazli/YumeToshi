@@ -1,7 +1,7 @@
 :root {
-  --main-color: #062654;
-  --navbar-color: #2265a2;
-  --card-color: #7fade0;
+  --main-color: #f07167;
+  --navbar-color: #1b998b;
+  --card-color: #1b998b;
   --text: #eaf0f7;
   --button-color: #ffb17a;
 }
@@ -15,6 +15,12 @@
   color: var(--text);
 }
 body {
-  background-color: var(--main-color);
+  /* background-color: var(--main-color); */
+  background: rgb(56, 162, 215);
+  background: radial-gradient(
+    circle,
+    rgba(56, 162, 215, 1) 5%,
+    rgba(86, 17, 57, 1) 100%
+  );
   font-family: Arial, Helvetica, sans-serif;
 }
