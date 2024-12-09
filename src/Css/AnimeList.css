@@ -26,7 +26,7 @@
 }
 
 .overlay {
-  padding: 5px 8px;
+  padding: 10px 8px;
   width: 100%;
   position: absolute;
   bottom: 0px;
@@ -39,13 +39,12 @@
   /* justify-content: space-between; */
   align-items: center;
   transition: height 0.3s ease;
-  height: 80px;
+  height: 50px;
   overflow: hidden;
 }
 .text-icon {
   width: 100%;
   display: flex;
-  
 }
 .overlay.expanded {
   height: 100%;
@@ -59,7 +58,11 @@
   /* padding: -55px 0px; */
   text-align: center;
 }
-
+.overlay.expanded h3{
+    white-space: wrap;
+    overflow: visible;
+    text-overflow: clip;
+}
 .overlay .icon {
   cursor: pointer;
   /* margin-top: 10px; */

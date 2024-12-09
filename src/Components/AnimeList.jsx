@@ -8,6 +8,7 @@ function AnimeList() {
   const dispatch = useDispatch();
   const { animes, loading } = useSelector((store) => store.animeList);
   const [expandedCard, setExpandedCard] = useState(null);
+  console.log(animes);
 
   useEffect(() => {
     dispatch(getAnime());
@@ -47,11 +48,12 @@ function AnimeList() {
                 </div>
               </div>
               {expandedCard === anime.mal_id && (
-                <p>
-                  {anime.synopsis
-                    ? anime.synopsis.slice(0, 100) + "..."
-                    : "Təsvir yoxdur."}
-                </p>
+                <div className="overlay-text">
+                  <h4 className="rating">Rating: {anime.score}</h4>
+                  <h4 className="rating">Episodes: {anime.episodes}</h4>
+                  <h4 className="rating">Aired: {anime.aired.string}</h4>
+                  <h4>Status:{anime.status}</h4>
+                </div>
               )}
             </div>
           </div>
