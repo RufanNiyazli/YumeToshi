@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const initialState = {
   animes: [],
-  selectedAnime: [],
+  selected: {},
   loading: false
 };
 
@@ -10,6 +10,15 @@ export const getAnime = createAsyncThunk("getAnime", async () => {
   const response = await axios.get(`https://api.jikan.moe/v4/anime`);
   return response.data.data;
 });
+
+export const getSelectedAnime = createAsyncThunk(
+  "getSelectedAnime",
+  async (id) => {
+    const response = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
+    return response.data.data;
+  }
+);
+
 const AnimeListSlice = createSlice({
   name: "anime",
   initialState,
@@ -19,13 +28,16 @@ const AnimeListSlice = createSlice({
         state.loading = true;
       })
       .addCase(getAnime.fulfilled, (state, action) => {
-        state.loading=false
+        state.loading = false;
         state.animes = action.payload;
       })
 
       .addCase(getAnime.rejected, (state, action) => {
-        state.loading=false
+        state.loading = false;
         console.error(action.error.message);
+      })
+      .addCase(getSelectedAnime.fulfilled, (state, action) => {
+        state.selected = action.payload;
       });
   },
   reducers: {}
