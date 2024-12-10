@@ -3,12 +3,13 @@ import Container from "@mui/material/Container";
 import "./App.css";
 import Header from "./Components/Header";
 import AnimeList from "./Components/AnimeList";
+import Router from './Router/Router'
 function App() {
   return (
     <>
       <Header />
       <Container maxWidth="lg">
-        <AnimeList />
+        <Router />
       </Container>
     </>
   );

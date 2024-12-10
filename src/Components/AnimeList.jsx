@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAnime } from "../Slices/AnimeListSlice";
 import { IoIosArrowDropup, IoIosArrowDropdown } from "react-icons/io";
 import "../Css/AnimeList.css";
+import { useNavigate } from "react-router-dom";
 
 function AnimeList() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { animes, loading } = useSelector((store) => store.animeList);
   const [expandedCard, setExpandedCard] = useState(null);
   console.log(animes);
@@ -53,6 +55,11 @@ function AnimeList() {
                   <h4 className="rating">Episodes: {anime.episodes}</h4>
                   <h4 className="rating">Aired: {anime.aired.string}</h4>
                   <h4>Status:{anime.status}</h4>
+                  <button
+                    onClick={() => navigate(`/anime-details/${anime.mal_id}`)}
+                  >
+                    more about
+                  </button>
                 </div>
               )}
             </div>
