@@ -51,14 +51,24 @@ function AnimeList() {
               </div>
               {expandedCard === anime.mal_id && (
                 <div className="overlay-text">
-                  <h4 className="rating">Rating: {anime.score}</h4>
-                  <h4 className="rating">Episodes: {anime.episodes}</h4>
-                  <h4 className="rating">Aired: {anime.aired.string}</h4>
-                  <h4>Status:{anime.status}</h4>
+                  <h4 className="rating">
+                    <span>Rating:</span> {anime.score}
+                  </h4>
+                  <h4 className="rating">
+                    <span>Episodes: </span>
+                    {anime.episodes}
+                  </h4>
+                  <h4 className="rating">
+                    <span>Aired:</span> {anime.aired.string}
+                  </h4>
+                  <h4>
+                    <span>Status:</span>
+                    {anime.status}
+                  </h4>
                   <button
                     onClick={() => navigate(`/anime-details/${anime.mal_id}`)}
                   >
-                    more about
+                    More About
                   </button>
                 </div>
               )}
