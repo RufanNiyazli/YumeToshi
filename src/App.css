@@ -1,10 +1,18 @@
 :root {
-  --main-color: #f07167;
-  --navbar-color: #1b998b;
-  --card-color: #1b998b;
-  --text: #eaf0f7;
-  --button-color: #ffb17a;
+  --main-color: #F4E1D2; /* Arxa fon üçün yumşaq bej ton */
+  --navbar-color: #E0B79E; /* Naviqasiya çubuğu üçün isti bej rəng */
+  --card-color: #D8C4A3; /* Kartlar üçün text rengidir bu*/
+  --text: #4A3A32; /* Yazılar üçün tünd qəhvəyi, bej fonla kontrast */
+  --button-color: #D29A6E; /* Düymələr üçün isti, parlaq bej */
+  
+  --card-text-color: #4A3A32; /* Kartlar üçün mətni tünd qəhvəyi */
+  --card-highlight-color: #D29A6E; /* Kartlarda vurğulanan mətni isti bej */
+
+  --button-hover-color: #B77F52; /* Düymə hover üçün daha tünd bej */
+  --card-hover-color: #C8A88D; /* Kart hover üçün daha açıq bej */
+  --navbar-hover-color: #C39D8F; /* Naviqasiya çubuğu hover üçün daha açıq bej */
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -16,6 +24,6 @@
 }
 body {
   background-color: var(--main-color);
-
+  color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
 }

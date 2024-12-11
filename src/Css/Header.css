@@ -6,7 +6,7 @@
     rgba(238, 174, 202, 1) 3%,
     rgba(148, 187, 233, 1) 100%
   ); */
-  background-color: #FF5733;
+  background-color: var(--navbar-color);
   color: var(--text);
   display: flex;
   align-items: center;

@@ -69,15 +69,25 @@
   font-size: 25px;
 }
 .overlay-text h4 {
+  color: var(--card-color);
   margin-top: 10px;
 }
 .overlay-text h4 span {
-  color: red;
+  color: var(--card-highlight-color);
 }
 .overlay-text button {
-  color: black;
-  padding: 5px 8px;
+  color: var(--text);
+  padding: 7px 10px;
   border-radius: 10px;
   margin-top: 10px;
-  font-size: 15px;
+  font-size: 18px;
+  background-color: var(--button-color);
+  cursor: pointer;
+}
+.overlay-text button:hover {
+  background-color: var(--button-hover-color);
+  color: white;
+}
+.text-icon h3 {
+  color: var(--card-color);
 }
