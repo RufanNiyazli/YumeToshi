@@ -23,14 +23,30 @@ function AnimeDetail() {
     <div>
       <div className="detail-container">
         <img src={selected.images?.jpg?.image_url} alt={selected.title} />
-        <div className="detail-content">
+        <div className="detail-text">
           <h1>{selected.title}</h1>
-          <div className="content">
+          
             <p>{selected.synopsis}</p>
+          </div>
+          <div className="details">
+            <h4 className="rating">
+              <span>Rating:</span> {selected.score}
+            </h4>
+            <h4 className="rating">
+              <span>Episodes: </span>
+              {selected.episodes}
+            </h4>
+            <h4 className="rating">
+              <span>Aired:</span> {selected.aired.string}
+            </h4>
+            <h4>
+              <span>Status:</span>
+              {selected.status}
+            </h4>
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 

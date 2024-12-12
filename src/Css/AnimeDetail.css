@@ -2,7 +2,24 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-top: 30px;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: var(--card-color);
 }
-.detail-content {
-  width: 60%;
+.detail-container img {
+  border-radius: 20px;
+}
+.detail-text {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: white;
+}
+.detail-text h1 {
+  margin-bottom: 10px;
+}
+.detail-text p {
+  font-size: 18px;
 }
