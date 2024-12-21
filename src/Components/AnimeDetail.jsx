@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Comment from "./Comment";
+
 import { getSelectedAnime } from "../Slices/AnimeListSlice";
 import "../Css/AnimeDetail.css";
+import CommentCreate from "./CommentCreate";
 
 function AnimeDetail() {
   const { selected } = useSelector((store) => store.animeList);
@@ -46,7 +47,10 @@ function AnimeDetail() {
           </h4>
         </div>
       </div>
-      <Comment/>
+      <div className="comment-section">
+      <CommentCreate />
+
+      </div>
     </div>
   );
 }

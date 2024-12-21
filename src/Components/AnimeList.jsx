@@ -4,6 +4,7 @@ import { getAnime } from "../Slices/AnimeListSlice";
 import { IoIosArrowDropup, IoIosArrowDropdown } from "react-icons/io";
 import "../Css/AnimeList.css";
 import { useNavigate } from "react-router-dom";
+import CommentCreate from "./CommentCreate";
 
 function AnimeList() {
   const dispatch = useDispatch();
@@ -75,6 +76,9 @@ function AnimeList() {
             </div>
           </div>
         ))}
+      <div className="comment-section">
+        <CommentCreate />
+      </div>
     </div>
   );
 }
