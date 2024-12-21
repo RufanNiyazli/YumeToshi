@@ -91,3 +91,11 @@
 .text-icon h3 {
   color: var(--card-color);
 }
+
+/* CommentSection */
+.comment-section {
+  padding: 20px 30px;
+  height: 500px;
+  margin-top: 50px;
+  background-color: var(--card-color);
+}

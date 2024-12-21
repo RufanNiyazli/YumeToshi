@@ -48,8 +48,7 @@ function AnimeDetail() {
         </div>
       </div>
       <div className="comment-section">
-      <CommentCreate />
-
+        <CommentCreate />
       </div>
     </div>
   );

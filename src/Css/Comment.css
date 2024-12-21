@@ -1,1 +1,20 @@
-.comment
+.create input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+}
+.create {
+  /* width: 100%; */
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+.create button {
+  border-radius: 10px;
+  padding: 6px 40px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 10px;
+  cursor: pointer;
+}
