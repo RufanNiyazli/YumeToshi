@@ -1,37 +1,54 @@
-import React from "react";
 import { useFormik } from "formik";
 import { userSchema } from "../Schemas/RegisterFormSchema";
 import "../Css/Register.css";
+import React from "react";
+import { toast } from "react-toastify";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../Firebase";
+
 function RegisterForm() {
-  const { values, errors, handleChange, handleSubmit } = useFormik({
+  const formik = useFormik({
     initialValues: {
       email: "",
       name: "",
       password: "",
       confirmPassword: "",
-      term: false
+      term: false,
     },
     validationSchema: userSchema,
-    onSubmit: (values, action) => {
-      setTimeout(() => {
-        action.resetForm();
-      }, 2000);
-    }
+    onSubmit: async (values, actions) => {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          values.email,
+          values.password
+        );
+
+        await updateProfile(userCredential.user, {
+          displayName: values.name,
+        });
+
+        toast.success("User created successfully!");
+        actions.resetForm();
+      } catch (error) {
+        toast.error(error.message);
+      }
+    },
   });
 
   return (
     <div className="register-container">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="email">Email</label>
           <input
             type="text"
             name="email"
             placeholder="Please Enter Your Email Address."
-            value={values.email}
-            onChange={handleChange}
+            value={formik.values.email}
+            onChange={formik.handleChange}
           />
-          {errors.email && <p className="issue">{errors.email}</p>}
+          {formik.errors.email && <p className="issue">{formik.errors.email}</p>}
         </div>
         <div>
           <label htmlFor="name">UserName</label>
@@ -39,22 +56,21 @@ function RegisterForm() {
             type="text"
             name="name"
             placeholder="Please Enter UserName."
-            value={values.name}
-            onChange={handleChange}
+            value={formik.values.name}
+            onChange={formik.handleChange}
           />
-          {errors.name && <p className="issue">{errors.name}</p>}
+          {formik.errors.name && <p className="issue">{formik.errors.name}</p>}
         </div>
-
         <div>
           <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             placeholder="Please Enter Your Password."
-            value={values.password}
-            onChange={handleChange}
+            value={formik.values.password}
+            onChange={formik.handleChange}
           />
-          {errors.password && <p className="issue">{errors.password}</p>}
+          {formik.errors.password && <p className="issue">{formik.errors.password}</p>}
         </div>
         <div>
           <label htmlFor="confirmPassword">Confirm Your Password</label>
@@ -62,35 +78,24 @@ function RegisterForm() {
             type="password"
             name="confirmPassword"
             placeholder="Please Confirm Your Password."
-            value={values.confirmPassword}
-            onChange={handleChange}
+            value={formik.values.confirmPassword}
+            onChange={formik.handleChange}
           />
-          {errors.confirmPassword && (
-            <p className="issue">{errors.confirmPassword}</p>
+          {formik.errors.confirmPassword && (
+            <p className="issue">{formik.errors.confirmPassword}</p>
           )}
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            width: "max-content"
-          }}
-        >
+        <div className="checkbox-container">
           <input
             type="checkbox"
             name="term"
-            checked={values.term}
-            onChange={handleChange}
-            style={{
-              width: "20px",
-              height: "20px",
-              marginRight: "5px"
-            }}
+            checked={formik.values.term}
+            onChange={formik.handleChange}
           />
           <label htmlFor="term">Please accept terms</label>
         </div>
-        {errors.term && <p className="issue">{errors.term}</p>}
+        {formik.errors.term && <p className="issue">{formik.errors.term}</p>}
+
         <button type="submit">Submit</button>
       </form>
     </div>
