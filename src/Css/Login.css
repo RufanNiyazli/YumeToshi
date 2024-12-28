@@ -21,7 +21,7 @@
   background-color: #faf3e0;
 }
 
-input {
+.auth input {
   width: 100%;
   outline: none;
   border: none;
@@ -38,7 +38,7 @@ input {
   justify-content: center;
   margin-top: 20px;
 }
-button {
+.button button {
   padding: 5px;
   border-radius: 5px;
   color: white;

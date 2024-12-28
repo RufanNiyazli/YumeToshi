@@ -13,7 +13,7 @@ function RegisterForm() {
       name: "",
       password: "",
       confirmPassword: "",
-      term: false,
+      term: false
     },
     validationSchema: userSchema,
     onSubmit: async (values, actions) => {
@@ -25,15 +25,19 @@ function RegisterForm() {
         );
 
         await updateProfile(userCredential.user, {
-          displayName: values.name,
+          displayName: values.name
         });
+        await sendEmailVerification(userCredential.user);
+        toast.success(
+          "User created successfully! Verification email sent. Please check your inbox."
+        );
 
-        toast.success("User created successfully!");
+        // toast.success("User created successfully!");
         actions.resetForm();
       } catch (error) {
         toast.error(error.message);
       }
-    },
+    }
   });
 
   return (
@@ -48,7 +52,9 @@ function RegisterForm() {
             value={formik.values.email}
             onChange={formik.handleChange}
           />
-          {formik.errors.email && <p className="issue">{formik.errors.email}</p>}
+          {formik.errors.email && (
+            <p className="issue">{formik.errors.email}</p>
+          )}
         </div>
         <div>
           <label htmlFor="name">UserName</label>
@@ -70,7 +76,9 @@ function RegisterForm() {
             value={formik.values.password}
             onChange={formik.handleChange}
           />
-          {formik.errors.password && <p className="issue">{formik.errors.password}</p>}
+          {formik.errors.password && (
+            <p className="issue">{formik.errors.password}</p>
+          )}
         </div>
         <div>
           <label htmlFor="confirmPassword">Confirm Your Password</label>

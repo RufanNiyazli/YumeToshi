@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { loginSchema } from "../Schemas/loginFormSchemas";
+import { Link } from "react-router";
 import "../Css/Login.css";
 
 function Login() {
@@ -95,6 +96,7 @@ function Login() {
               Sign In
             </button>
           </div>
+          <Link to='/register'>Sign up</Link>
         </form>
       </div>
     </div>
