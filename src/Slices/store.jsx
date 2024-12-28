@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import AnimeListReducer from './AnimeListSlice'
+import AnimeListReducer from "./AnimeListSlice";
+import commentReducer from "./CommentSlice";
 export const store = configureStore({
   reducer: {
-    animeList:AnimeListReducer
+    animeList: AnimeListReducer,
+    comment: commentReducer
   }
 });

@@ -36,8 +36,8 @@
   font-size: 18px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-  align-items: center;
+  align-items: flex-start;
+  /* align-items: center; */
   transition: height 0.3s ease;
   height: 50px;
   overflow: hidden;
@@ -90,12 +90,4 @@
 }
 .text-icon h3 {
   color: var(--card-color);
-}
-
-/* CommentSection */
-.comment-section {
-  padding: 20px 30px;
-  height: 500px;
-  margin-top: 50px;
-  background-color: var(--card-color);
 }

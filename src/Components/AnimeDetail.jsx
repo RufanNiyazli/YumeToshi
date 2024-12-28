@@ -39,7 +39,7 @@ function AnimeDetail() {
             {selected.episodes}
           </h4>
           <h4 className="rating">
-            <span>Aired:</span> {selected.aired.string}
+            {/* <span>Aired:</span> {selected.aired.string} */}
           </h4>
           <h4>
             <span>Status:</span>
@@ -48,7 +48,7 @@ function AnimeDetail() {
         </div>
       </div>
       <div className="comment-section">
-        <CommentCreate />
+        <CommentCreate id={id} />
       </div>
     </div>
   );

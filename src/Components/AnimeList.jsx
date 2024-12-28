@@ -76,9 +76,7 @@ function AnimeList() {
             </div>
           </div>
         ))}
-      <div className="comment-section">
-        <CommentCreate />
-      </div>
+      
     </div>
   );
 }
