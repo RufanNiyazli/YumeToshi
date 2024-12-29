@@ -3,7 +3,11 @@ import { userSchema } from "../Schemas/RegisterFormSchema";
 import "../Css/Register.css";
 import React from "react";
 import { toast } from "react-toastify";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification
+} from "firebase/auth";
 import { auth } from "../Firebase";
 
 function RegisterForm() {
@@ -32,7 +36,6 @@ function RegisterForm() {
           "User created successfully! Verification email sent. Please check your inbox."
         );
 
-        // toast.success("User created successfully!");
         actions.resetForm();
       } catch (error) {
         toast.error(error.message);
@@ -51,6 +54,7 @@ function RegisterForm() {
             placeholder="Please Enter Your Email Address."
             value={formik.values.email}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
           {formik.errors.email && (
             <p className="issue">{formik.errors.email}</p>
@@ -64,6 +68,7 @@ function RegisterForm() {
             placeholder="Please Enter UserName."
             value={formik.values.name}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
           {formik.errors.name && <p className="issue">{formik.errors.name}</p>}
         </div>
@@ -75,6 +80,7 @@ function RegisterForm() {
             placeholder="Please Enter Your Password."
             value={formik.values.password}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
           {formik.errors.password && (
             <p className="issue">{formik.errors.password}</p>
@@ -88,6 +94,7 @@ function RegisterForm() {
             placeholder="Please Confirm Your Password."
             value={formik.values.confirmPassword}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
           {formik.errors.confirmPassword && (
             <p className="issue">{formik.errors.confirmPassword}</p>
@@ -102,9 +109,13 @@ function RegisterForm() {
           />
           <label htmlFor="term">Please accept terms</label>
         </div>
-        {formik.errors.term && <p className="issue">{formik.errors.term}</p>}
+        {formik.errors.term && (
+          <p className="issue">You must accept the terms.</p>
+        )}
 
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? "Submitting..." : "Submit"}
+        </button>
       </form>
     </div>
   );

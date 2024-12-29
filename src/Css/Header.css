@@ -15,18 +15,22 @@
   padding: 10px 150px;
   justify-content: space-between;
 }
+
 h1 {
   cursor: pointer;
 }
+
 .left-side {
   width: 90%;
 }
+
 .right-side {
   display: flex;
   /* justify-content: space-around; */
   align-items: center;
   width: 40%;
 }
+
 .right-side input {
   width: 90%;
   padding: 5px 10px;

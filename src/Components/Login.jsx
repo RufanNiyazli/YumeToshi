@@ -89,14 +89,18 @@ function Login() {
               type="button"
               onClick={handleGoogleSignIn}
             >
+              
               <FaGoogle style={{ marginRight: "5px" }} />
               Sign in with Google
             </button>
+           
+<div>ss  </div>
+
             <button style={{ backgroundColor: "blue" }} type="submit">
               Sign In
             </button>
           </div>
-          <Link to='/register'>Sign up</Link>
+          <Link to="/register">Sign up</Link>
         </form>
       </div>
     </div>
