@@ -13,11 +13,13 @@ function Router() {
       <Routes>
         <Route element={<ProtectedRoute/>}>
           <Route element={<MainLayout/>}>
+            <Route path="/" element={<Home />}></Route>
             <Route path="/home" element={<Home />}></Route>
             <Route path="/anime-details/:id" element={<AnimeDetail />}></Route>
           </Route>
         </Route>
         <Route element={<AuthLayout/>}>
+          <Route path="/" element={<Login />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<RegisterForm />}></Route>
         </Route>

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { getSelectedAnime } from "../Slices/AnimeListSlice";
 import "../Css/AnimeDetail.css";
 import CommentCreate from "./CommentCreate";
-
+import CommentList from './CommentList'
 function AnimeDetail() {
   const { selected } = useSelector((store) => store.animeList);
   const dispatch = useDispatch();
@@ -49,6 +49,7 @@ function AnimeDetail() {
       </div>
       <div className="comment-section">
         <CommentCreate id={id} />
+        <CommentList/>
       </div>
     </div>
   );
