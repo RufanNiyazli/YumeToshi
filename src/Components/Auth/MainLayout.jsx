@@ -4,7 +4,7 @@ import useIsLogged from '../../Hooks/useIsLogged'
 
 function MainLayout() {
     const isLogged=useIsLogged()
-    console.log(isLogged);
+    // console.log(isLogged);
     
     if (isLogged==null) {
         return null

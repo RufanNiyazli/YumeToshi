@@ -4,7 +4,7 @@ import { fetchComments } from "../Slices/CommentSlice";
 
 const formatDate = (isoString) => {
   const date = new Date(isoString);
-  return date.toLocaleString(); // Yerli tarix formatında göstərir
+  return date.toLocaleString(); 
 };
 
 function CommentList() {
@@ -15,7 +15,7 @@ function CommentList() {
     if (!loading) {
       dispatch(fetchComments());
     }
-  }, [dispatch, loading]); // Yalnız loading dəyişdikdə trigger olsun
+  },[dispatch]);
 
   if (loading === "loading") {
     return <div className="loading">Şərhlər yüklənir...</div>;

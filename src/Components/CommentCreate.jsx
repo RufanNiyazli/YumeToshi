@@ -7,7 +7,7 @@ import { collection, addDoc, Timestamp } from "firebase/firestore";
 function CommentCreate({ id }) {
   const [comment, setComment] = useState("");
 
-  const addComment = async () => {
+ const addComment = async () => {
     if (comment.trim() === "") {
       return alert("Boş mesaj olmaz.");
     }

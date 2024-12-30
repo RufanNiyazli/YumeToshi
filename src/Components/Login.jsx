@@ -52,7 +52,7 @@ function Login() {
 
   return (
     <div className="auth-container">
-      <h1>Sign Up / Sign In</h1>
+      <h1>Sign İn</h1>
       <div className="auth">
         <form onSubmit={formik.handleSubmit}>
           <div className="form">

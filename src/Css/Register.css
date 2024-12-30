@@ -1,8 +1,12 @@
 .register-container {
-  height: 100vh;
+  margin-top: 50px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.register-container h1{
+  margin-bottom: 10px;
 }
 .register-container form {
   background-color: #faf3e0;
@@ -11,14 +15,21 @@
   flex-direction: column;
   padding: 10px;
   border-radius: 10px;
-  /* align-items: center; */
+  align-items: center;
 }
-.register-container form div {
+.register-container form div{
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-top: 10px;
   padding-left: 5px;
+  
+}
+.checkbox-container{
+  display: flex;
+  flex-direction: row !important;
+  /* width: max-content !important; */
+  align-items: start;
 }
 .register-container form div input {
   width: 100%;
@@ -46,7 +57,7 @@
   color: white;
   font-size: 20px;
   font-weight: 700;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 .issue {
   color: red;

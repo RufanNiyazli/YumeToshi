@@ -17,7 +17,6 @@ function RegisterForm() {
       name: "",
       password: "",
       confirmPassword: "",
-      term: false
     },
     validationSchema: userSchema,
     onSubmit: async (values, actions) => {
@@ -45,6 +44,7 @@ function RegisterForm() {
 
   return (
     <div className="register-container">
+      <h1>Sign Up</h1>
       <form onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="email">Email</label>
@@ -100,18 +100,8 @@ function RegisterForm() {
             <p className="issue">{formik.errors.confirmPassword}</p>
           )}
         </div>
-        <div className="checkbox-container">
-          <input
-            type="checkbox"
-            name="term"
-            checked={formik.values.term}
-            onChange={formik.handleChange}
-          />
-          <label htmlFor="term">Please accept terms</label>
-        </div>
-        {formik.errors.term && (
-          <p className="issue">You must accept the terms.</p>
-        )}
+        
+      
 
         <button type="submit" disabled={formik.isSubmitting}>
           {formik.isSubmitting ? "Submitting..." : "Submit"}

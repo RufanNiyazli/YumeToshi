@@ -10,7 +10,9 @@
   color: black;
 }
 .auth {
+margin-top: 10px;
   padding: 20px;
+  padding-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +22,10 @@
   color: #006400;
   background-color: #faf3e0;
 }
-
+.auth form{
+  display: flex;
+  flex-direction: column;
+}
 .auth input {
   width: 100%;
   outline: none;
@@ -48,4 +53,14 @@
   align-items: center;
   cursor: pointer;
   margin-right: 5px;
+}
+.auth a{
+  /* margin: 0 auto; */
+  text-align: center;
+  margin-top: 10px;
+  color:  #4A3A32;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: underline;
+
 }
