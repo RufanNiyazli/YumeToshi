@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
 import { getSelectedAnime } from "../Slices/AnimeListSlice";
 import "../Css/AnimeDetail.css";
 import CommentCreate from "./CommentCreate";
-import CommentList from './CommentList'
+
 function AnimeDetail() {
   const { selected } = useSelector((store) => store.animeList);
   const dispatch = useDispatch();
@@ -17,9 +16,7 @@ function AnimeDetail() {
     }
   }, [id, dispatch]);
 
-  if (!selected) {
-    return <div>Loading...</div>;
-  }
+  if (!selected) return <div>Loading...</div>;
 
   return (
     <div>
@@ -27,7 +24,6 @@ function AnimeDetail() {
         <img src={selected.images?.jpg?.image_url} alt={selected.title} />
         <div className="detail-text">
           <h1>{selected.title}</h1>
-
           <p>{selected.synopsis}</p>
         </div>
         <div className="details">
@@ -35,21 +31,13 @@ function AnimeDetail() {
             <span>Rating:</span> {selected.score}
           </h4>
           <h4 className="rating">
-            <span>Episodes: </span>
-            {selected.episodes}
+            <span>Episodes: </span>{selected.episodes}
           </h4>
-          <h4 className="rating">
-            {/* <span>Aired:</span> {selected.aired.string} */}
-          </h4>
-          <h4>
-            <span>Status:</span>
-            {selected.status}
-          </h4>
+          <h4><span>Status:</span> {selected.status}</h4>
         </div>
       </div>
       <div className="comment-section">
-        <CommentCreate id={id} />
-        <CommentList/>
+        <CommentCreate />
       </div>
     </div>
   );

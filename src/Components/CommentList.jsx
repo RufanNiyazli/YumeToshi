@@ -1,45 +1,41 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchComments } from "../Slices/CommentSlice";
+import { fetchComments, getAnimeId, getSelectedComment } from "../Slices/CommentSlice";
+import "../Css/Comment.css";
+import { useParams } from "react-router-dom";
 
 const formatDate = (isoString) => {
   const date = new Date(isoString);
-  return date.toLocaleString(); 
+  return date.toLocaleString();
 };
 
-function CommentList() {
+function CommentList({ addCommentTrigger }) {
   const dispatch = useDispatch();
-  const { comments, loading, error } = useSelector((state) => state.comment);
+  const { selectedComments, loading, error } = useSelector((state) => state.comment);
+  const { id } = useParams();
 
   useEffect(() => {
-    if (!loading) {
-      dispatch(fetchComments());
-    }
-  },[dispatch]);
+    dispatch(fetchComments());
+    dispatch(getAnimeId(id));
+  }, [dispatch, id]);
 
-  if (loading === "loading") {
-    return <div className="loading">Şərhlər yüklənir...</div>;
-  }
+  useEffect(() => {
+    dispatch(getSelectedComment());
+  }, [dispatch, id, addCommentTrigger]);
 
-  if (loading === "failed") {
-    return <div className="error">Xəta: {error}</div>;
-  }
+  if (loading) return <div className="loading">Şərhlər yüklənir...</div>;
+  if (error) return <div className="error">Xəta: {error}</div>;
 
   return (
-    <div>
-      <h2>Comments</h2>
+    <div className="commentlist-container">
       <ul>
-        {comments.map((comment, index) => (
+        {selectedComments.map((comment, index) => (
           <li key={index}>
-            <p>
+            <p className="author-comment">
               <strong>{comment.author}:</strong> {comment.comment}
             </p>
-            <p>
-              <small>
-                {comment.createdAt
-                  ? formatDate(comment.createdAt)
-                  : "Tarix mövcud deyil"}
-              </small>
+            <p className="datetime">
+              <small>{comment.createdAt ? formatDate(comment.createdAt) : "Tarix mövcud deyil"}</small>
             </p>
           </li>
         ))}

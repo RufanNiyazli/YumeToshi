@@ -1,38 +1,40 @@
 import React, { useState } from "react";
-import "../Css/Comment.css";
-import { db } from "../Firebase";
-import { getAuth } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { db } from "../Firebase";
+import { addCommentToStore } from "../Slices/CommentSlice";
+import CommentList from "./CommentList";
 
-function CommentCreate({ id }) {
+function CommentCreate() {
   const [comment, setComment] = useState("");
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
- const addComment = async () => {
-    if (comment.trim() === "") {
-      return alert("Boş mesaj olmaz.");
-    }
-
-    if (!id) {
-      return alert("Keçərsiz anime ID-si!");
-    }
+  const addComment = async () => {
+    if (comment.trim() === "") return alert("Boş mesaj olmaz.");
+    if (!id) return alert("Anime ID-si tapılmadı!");
 
     try {
       const auth = getAuth();
       const user = auth.currentUser;
+      if (!user) return alert("Şərh yazmaq üçün daxil olun!");
 
-      if (!user) {
-        return alert("Şərh yazmaq üçün daxil olun!");
-      }
-
-      const docRef = await addDoc(collection(db, "comments"), {
-        comment: comment,
+      const newComment = {
+        comment,
         anime_id: id,
         userEmail: user.email,
         userName: user.displayName || "Anonymous",
-        createdAt: Timestamp.fromDate(new Date())
+        createdAt: new Date().toISOString(),
+      };
+
+      await addDoc(collection(db, "comments"), {
+        ...newComment,
+        createdAt: Timestamp.fromDate(new Date()),
       });
 
-      console.log("Şərh əlavə edildi: ", docRef.id);
+      dispatch(addCommentToStore(newComment));
       setComment("");
     } catch (error) {
       console.error("Şərh əlavə edərkən xəta baş verdi: ", error);
@@ -52,6 +54,7 @@ function CommentCreate({ id }) {
         />
         <button onClick={addComment}>Add</button>
       </div>
+      <CommentList addCommentTrigger={comment} />
     </div>
   );
 }
