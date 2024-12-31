@@ -68,7 +68,7 @@ const CommentSlice = createSlice({
         state.comments = action.payload.sort((a, b) => {
           const dateA = new Date(a.createdAt);
           const dateB = new Date(b.createdAt);
-          return dateB - dateA; // Yeni şərhlər yuxarıda göstərilsin
+          return dateB - dateA;
         });
       })
       .addCase(fetchComments.rejected, (state, action) => {

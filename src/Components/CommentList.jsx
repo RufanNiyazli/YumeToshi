@@ -22,6 +22,9 @@ function CommentList({ addCommentTrigger }) {
   useEffect(() => {
     dispatch(getSelectedComment());
   }, [dispatch, id, addCommentTrigger]);
+  
+
+  console.log(selectedComments)
 
   if (loading) return <div className="loading">Şərhlər yüklənir...</div>;
   if (error) return <div className="error">Xəta: {error}</div>;
