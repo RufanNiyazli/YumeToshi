@@ -52,9 +52,10 @@ const CommentSlice = createSlice({
       );
     },
     addCommentToStore: (state, action) => {
-      state.comments.push(action.payload);
+      state.comments.unshift(action.payload); //bu meluamti en qabaga atir
+      // state.comments.push(action.payload);//
       if (action.payload.anime_id === state.selectedAnimeId) {
-        state.selectedComments.push(action.payload);
+        state.selectedComments.unshift(action.payload);
       }
     },
   },

@@ -11,20 +11,21 @@ const formatDate = (isoString) => {
 
 function CommentList({ addCommentTrigger }) {
   const dispatch = useDispatch();
-  const { selectedComments, loading, error } = useSelector((state) => state.comment);
+  const { selectedComments, loading, error, comments } = useSelector((state) => state.comment);
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(fetchComments());
-    dispatch(getAnimeId(id));
+    dispatch(fetchComments()).then(() => {
+      dispatch(getAnimeId(id));
+      dispatch(getSelectedComment());
+    });
   }, [dispatch, id]);
 
   useEffect(() => {
-    dispatch(getSelectedComment());
-  }, [dispatch, id, addCommentTrigger]);
-  
-
-  console.log(selectedComments)
+    if (comments.length > 0 && id) {
+      dispatch(getSelectedComment());
+    }
+  }, [dispatch, comments, id, addCommentTrigger]);
 
   if (loading) return <div className="loading">Şərhlər yüklənir...</div>;
   if (error) return <div className="error">Xəta: {error}</div>;
@@ -35,7 +36,7 @@ function CommentList({ addCommentTrigger }) {
         {selectedComments.map((comment, index) => (
           <li key={index}>
             <p className="author-comment">
-              <strong>{comment.author}:</strong> {comment.comment}
+              <strong>{comment.userName}:</strong> {comment.comment}
             </p>
             <p className="datetime">
               <small>{comment.createdAt ? formatDate(comment.createdAt) : "Tarix mövcud deyil"}</small>
